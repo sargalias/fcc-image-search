@@ -7,32 +7,66 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Request Header Parser Microservice</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style.css">
 
 </head>
 <body>
 
 <div class="container">
     <div class="alert">
-        <h1>Request Header Parser Microservice</h1>
+        <h1>Image Search</h1>
     </div>
     <div class="alert alert-info">
-        <h3>User story:</h3>
-        <p>I can get the IP address, language and operating system for my browser.</p>
+        <h3>User stories:</h3>
+        <ul>
+            <li>Image search:</li>
+                <ul>
+                    <li>I can search for images using a search term.</li>
+                    <li>I can add an offset value to skip results.</li>
+                    <li>I'll get a list of 10 results (in JSON format), each with a title, description, link, thumbnail link and image link.</li>
+                </ul>
+            </li>
+            <li>I can get a list of the most recently submitted search strings.</li>
+        </ul>
     </div>
 
     <div class="alert alert-warning">
-        <h3>Example usage:</h3>
-        <p>Visit the <a href="/api/whoami" class="text-danger">request header parser</a> page (<a
-                href="/api/whoami" class="text-danger">https://sargalias-header-parser-ms.herokuapp.com/api/whoami</a>).</p>
+        <h3>Instructions for image search</h3>
+        <ol>
+            <li>The search domain is https://sargalias-image-search.herokuapp.com/api/imagesearch?q=YOUR_SEARCH_TERMS</li>
+            <li>Replace YOUR_SEARCH_TERMS with the search terms you want to use.</li>
+            <li>Optionally, add &offset=X at the end, where X is the number of results you want to skip. For example, adding offset=10 would skip the first 10 results, such as if you were on page 2 of google search results.</li>
+        </ol>
+        <p>Examples: </p>
+        <p>Click this link to search for funny cats: <a
+                class="text-danger"
+                href="/api/imagesearch?q=funny%20cats">
+            https://sargalias-image-search.herokuapp.com/api/imagesearch?q=funny cats
+        </a></p>
+        <p>Click this link to search for funny cats and skip the first 10 results: <a
+                class="text-danger"
+                href="/api/imagesearch?q=funny%20cats&offset=10">
+            https://sargalias-image-search.herokuapp.com/api/imagesearch?q=funny cats&offset=10
+        </a></p>
+        <h3>Instructions for viewing the latest searches</h3>
+        <p>To view the 10 latest searches, visit: <a
+                class="text-danger"
+                href="/api/imagesearch/latest">
+            https://sargalias-image-search.herokuapp.com/api/imagesearch/latest
+        </a></p>
     </div>
 
     <div class="alert">
         <h3>Example output:</h3>
-        <p><code class="text-dark">{<br>
-            &emsp;"ipaddress": "127.0.0.1",<br>
-            &emsp;"language": "en-GB",<br>
-            &ensp;"software": "Windows NT 10.0; Win64; x64"<br>
-            }</code></p>
+        <p><code class="text-dark">[<br>
+            &emsp;{<br>
+            &emsp;&emsp;"title": "Funny CATS - HOLD YOUR LAUGH IF YOU CAN (CHALLENGE ...",<br>
+            &emsp;&emsp;"description": "Feb 4, 2017 ... Cats are simply the funniest and most hilarious animals! Can you hold your laugh \nwhile watching this super funny cat compilation? Just look how all these cats & \nkittens play, fail, get along with dogs and other animals, get scared, make funny \nsounds, get angry, play in water... So ridiculous, funny and cute!",<br>
+            &emsp;&emsp;"link": "https://www.youtube.com/watch?v=72NfSwCzFVE",<br>
+            &emsp;&emsp;"thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQh4__hwDTXbmAJhnGwoL2z4u1f9YGOYaLBIc_E8DWawNXEMCWmE-hDzyuL",<br>
+            &emsp;&emsp;"image": "https://i.ytimg.com/vi/72NfSwCzFVE/hqdefault.jpg"<br>
+            &emsp;},
+        </code></p>
     </div>
 </div>
 
