@@ -1,3 +1,4 @@
 node_modules/
 .idea/
 config/google-dev.js
+config/database-dev.js
