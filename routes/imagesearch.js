@@ -2,6 +2,7 @@ const router = require('express').Router();
 const googleConfig = require('../config/google');
 const request = require('request');
 const parseGoogleResponse = require('../helpers/parseGoogleResponse');
+const saveQuery = require('../helpers/saveQuery');
 
 
 // Routes
@@ -13,14 +14,18 @@ router.get('/api/imagesearch', (req, res) => {
     if (req.query.offset) {
         url += `&start=${req.query.offset}`;
     }
-    request.get(url, (err, req, body) => {
-        if (err) {
-            return res.json(err);
-        }
-        let formattedBody = parseGoogleResponse(body);
-        res.send(formattedBody);
-    });
+    request.get(url,
+        function(err, req, body) {
+            if (err) {
+                return res.json(err);
+            }
+            let formattedBody = parseGoogleResponse(body);
+            res.send(formattedBody);
+            saveQuery(this.originalQuery, this.originalOffset);
+        }.bind({originalQuery: req.query.q, originalOffset: req.query.offset})
+    );
 });
+
 
 
 // 404 error redirects to home
