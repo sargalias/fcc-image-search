@@ -5,18 +5,9 @@ const request = require('request');
 const googleConfig = require('./config/google');
 
 
-// Google config and setup
-const GOOGLE_API_KEY = googleConfig.API_KEY;
-const GOOGLE_SE_ID = googleConfig.SEARCH_ENGINE_ID;
-const baseUrl = 'https://www.googleapis.com/customsearch/v1';
-const keyParam = `key=${GOOGLE_API_KEY}`;
-const cxParam = `cx=${GOOGLE_SE_ID}`;
-const safe = 'safe=medium';
-const fields = 'fields=items(title, snippet, link, pagemap)';
-
-
 // Express setup
 const app = express();
+
 // Public directory
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -24,7 +15,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.get('/api/imagesearch', (req, res) => {
-    let url = `${baseUrl}?${keyParam}&${cxParam}&${safe}&${fields}`;
+    let url = `${googleConfig.baseUrl}?${googleConfig.keyParam}&${googleConfig.cxParam}&${googleConfig.safe}&${googleConfig.fields}`;
     if (req.query.q) {
         url += `&q=${req.query.q}`;
     }
