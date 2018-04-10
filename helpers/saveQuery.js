@@ -1,4 +1,5 @@
 const QueryModel = require('../models/query');
+const deleteExtraQueries = require('./deleteExtraQueries');
 
 
 function saveQuery(query, offset) {
@@ -12,8 +13,14 @@ function saveQuery(query, offset) {
         document.offset = offset
     }
     QueryModel.create(document, (err) => {
-        if (err) console.log(err);
+        if (err) {
+            console.log(err);
+        }
+        else {
+            deleteExtraQueries();
+        }
     });
 }
+
 
 module.exports = saveQuery;

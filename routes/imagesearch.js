@@ -3,6 +3,7 @@ const googleConfig = require('../config/google');
 const request = require('request');
 const parseGoogleResponse = require('../helpers/parseGoogleResponse');
 const saveQuery = require('../helpers/saveQuery');
+const showLatestQueries = require('../helpers/showLatestQueries');
 
 
 // Routes
@@ -26,6 +27,8 @@ router.get('/api/imagesearch', (req, res) => {
     );
 });
 
+
+router.get('/api/imagesearch/latest', showLatestQueries);
 
 
 // 404 error redirects to home

@@ -12,11 +12,13 @@ function parseGoogleResponse(body) {
         if (el.link) {
             item.link = el.link;
         }
-        if (el.pagemap.cse_thumbnail) {
-            item.thumbnail = el.pagemap.cse_thumbnail[0].src;
-        }
-        if (el.pagemap.cse_image) {
-            item.image = el.pagemap.cse_image[0].src;
+        if (el.pagemap) {
+            if (el.pagemap.cse_thumbnail) {
+                item.thumbnail = el.pagemap.cse_thumbnail[0].src;
+            }
+            if (el.pagemap.cse_image) {
+                item.image = el.pagemap.cse_image[0].src;
+            }
         }
         formatted.push(item);
     });
