@@ -23,4 +23,10 @@ router.get('/api/imagesearch', (req, res) => {
 });
 
 
+// 404 error redirects to home
+router.all('/', (req, res) => {
+    res.redirect('/');
+});
+
+
 module.exports = router;
